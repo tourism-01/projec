@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gadgetrix.shop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Header -->
+  <header class="p-4 bg-indigo-700 text-white text-center shadow-lg">
+    <h1 class="text-3xl font-bold tracking-wide" id="nameh1">Gadgetrix.shop</h1>
+  </header>
+
+  <!-- Search -->
+  <div class="p-4 max-w-4xl mx-auto">
+    <input
+      id="search"
+      type="text"
+      placeholder="Search products..."
+      class="w-full p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+    />
+  </div>
+
+  <!-- Product Grid -->
+  <main class="max-w-6xl mx-auto px-4 pb-10">
+    <div id="product-list" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Products render here -->
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="flex justify-center gap-4 mt-8">
+      <button id="prev-btn" class="px-4 py-2 bg-gray-300 text-black rounded-xl hover:bg-gray-400 disabled:opacity-50" disabled>Prev</button>
+      <button id="next-btn" class="px-4 py-2 bg-indigo-500 text-white rounded-xl hover:bg-indigo-600">Next</button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white px-6 py-8 text-center">
+    <h2 class="text-xl font-bold mb-2">Gadgetrix.shop</h2>
+    <p class="mb-4 text-sm">As an Amazon Associate, I earn from qualifying purchases.</p>
+    <div class="flex justify-center gap-4 text-lg mb-4">
+      <a href="https://youtube.com/yourchannel" target="_blank" class="hover:text-red-500" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://instagram.com/yourprofile" target="_blank" class="hover:text-pink-500" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://tiktok.com/@yourprofile" target="_blank" class="hover:text-white" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://twitter.com/yourprofile" target="_blank" class="hover:text-blue-400" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://facebook.com/yourprofile" target="_blank" class="hover:text-blue-600" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+    </div>
+    <p class="text-xs text-gray-400">© 2025 Gadgetrix.shop. All rights reserved.</p>
+  </footer>
+
+  <!-- Link to External JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>

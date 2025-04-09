@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Details</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fixed-buttons {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #ffffff;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      margin: 5px;
+      z-index: 1000;
+      margin: 0;
+    }
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+    .popup {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 90%;
+      width: 400px;
+    }
+    .popup h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    #header {
+      text-align: left;
+    }
+    .popup a {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .popup a.uk-link {
+      background-color: #0070f3;
+      color: white;
+    }
+    .popup a.inr-link {
+      background-color: #ff5722;
+      color: white;
+    }
+    .popup .close-btn {
+      margin-top: 10px;
+      cursor: pointer;
+      color: #555;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <header class="p-4 bg-indigo-700 text-white text-center">
+    <h1 class="text-2xl font-bold" id="header">Product Details</h1>
+  </header>
+  <br>
+
+  <a href="index.html" class="py-3 bg-indigo-500 text-white rounded-xl hover:bg-indigo-600 p-5 m-4">← Back</a>
+  <main class="max-w-4xl mx-auto p-6 bg-white mt-6 rounded-xl shadow">
+    <img id="product-image" class="w-full h-64 object-cover rounded-xl mb-4" src="" alt="Product Image"/>
+    <h2 id="product-name" class="text-2xl font-bold mb-2"></h2>
+    <p id="product-bio" class="text-gray-600 mb-4"></p>
+    <p id="product-details" class="text-gray-600 mb-4"></p>
+  </main>
+
+  <!-- Fixed Buttons -->
+  <div class="fixed-buttons">
+    <a href="#" class="px-6 py-3 bg-gray-300 text-black rounded-xl hover:bg-gray-400">Add to Cart</a>
+    <button id="buy-now-btn" class="px-6 py-3 bg-indigo-500 text-white rounded-xl hover:bg-indigo-600">Buy Now</button>
+  </div>
+    <!-- Footer -->
+  <footer class="bg-gray-800 text-white px-6 py-8 text-center">
+    <h2 class="text-xl font-bold mb-2">Gadgetrix.shop</h2>
+    <p class="mb-4 text-sm">As an Amazon Associate, I earn from qualifying purchases.</p>
+    <p class="text-xs text-gray-400">© 2025 Gadgetrix.shop. All rights reserved.</p>
+  </footer>
+
+  <!-- Popup Notification -->
+  <div id="popup-overlay" class="popup-overlay">
+    <div class="popup">
+      <h3>Choose Your Region</h3>
+      <a id="uk-link" href="#" target="_blank" class="uk-link">Buy in UK</a>
+      <a id="inr-link" href="#" target="_blank" class="inr-link">Buy in INR</a>
+      <span class="close-btn">Cancel</span>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    // Get product details from query parameters
+    const productName = params.get("name");
+    const productImage = params.get("image") || "https://via.placeholder.com/600x400?text=No+Image";
+    const productBio = params.get("bio");
+    const productDetails = params.get("details") || "No additional details available.";
+    const ukLink = params.get("ukLink");
+    const inrLink = params.get("inrLink");
+
+    // Update the product details on the page
+    document.getElementById("product-name").textContent = productName;
+    document.getElementById("product-image").src = productImage;
+    document.getElementById("product-bio").textContent = productBio;
+    document.getElementById("product-details").innerHTML = productDetails.replace(/\n\n/g, "<br><br>");
+
+    // Popup Logic
+    const buyNowBtn = document.getElementById("buy-now-btn");
+    const popupOverlay = document.getElementById("popup-overlay");
+    const ukLinkElement = document.getElementById("uk-link");
+    const inrLinkElement = document.getElementById("inr-link");
+    const closeBtn = document.querySelector(".close-btn");
+
+    // Set UK and INR links dynamically
+    if (ukLink && inrLink) {
+      ukLinkElement.href = ukLink;
+      inrLinkElement.href = inrLink;
+    } else {
+      ukLinkElement.href = "#";
+      inrLinkElement.href = "#";
+      ukLinkElement.textContent = "Link not available";
+      inrLinkElement.textContent = "Link not available";
+    }
+
+    // Show popup
+    buyNowBtn.addEventListener("click", () => {
+      popupOverlay.style.display = "flex";
+    });
+
+    // Close popup
+    closeBtn.addEventListener("click", () => {
+      popupOverlay.style.display = "none";
+    });
+
+    // Close popup when clicking outside
+    popupOverlay.addEventListener("click", (e) => {
+      if (e.target === popupOverlay) {
+        popupOverlay.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
